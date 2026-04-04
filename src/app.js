@@ -1,10 +1,11 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const pool = require("./db");
+const authRoutes = require("./routes/authRoutes");
 
 dotenv.config();
 
-const pool = require("./db");
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("API Running...");
 });
+
 
 app.get("/test-db", async (req, res) => {
   try {
@@ -26,5 +28,8 @@ app.get("/test-db", async (req, res) => {
     });
   }
 });
+
+app.use("/api/auth", authRoutes);
+
 
 module.exports = app;
