@@ -6,9 +6,9 @@ const rateLimit = require("express-rate-limit");
 router.post(
   "/register",
   (req, res, next) => {
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
 
-    if (!email || !password) {
+    if (!name || !email || !password) {
       return res.status(400).json({ message: "All fields required" });
     }
 
