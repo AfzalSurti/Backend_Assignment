@@ -1,2 +1,3 @@
-#i ant node modues here write that below this line
+#i ant node modues here write that below this line also put the fr .env file 
 node_modules/
+.env
