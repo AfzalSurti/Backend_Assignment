@@ -5,6 +5,7 @@ const cors = require("cors");
 dotenv.config();
 
 const authRoutes = require("./routes/authRoutes");
+const recordRoutes = require("./routes/recordRoutes");
 const pool = require("./db");
 
 
@@ -31,6 +32,7 @@ app.get("/test-db", async (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/records", recordRoutes);
 
 
 module.exports = app;
