@@ -7,6 +7,7 @@ dotenv.config();
 const authRoutes = require("./routes/authRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const recordRoutes = require("./routes/recordRoutes");
+const userRoutes = require("./routes/userRoutes");
 const pool = require("./db");
 
 
@@ -35,6 +36,7 @@ app.get("/test-db", async (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/records", recordRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/users", userRoutes);
 
 
 module.exports = app;
