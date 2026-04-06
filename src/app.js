@@ -9,6 +9,7 @@ const dashboardRoutes = require("./routes/dashboardRoutes");
 const recordRoutes = require("./routes/recordRoutes");
 const userRoutes = require("./routes/userRoutes");
 const pool = require("./db");
+const { notFoundHandler, errorHandler } = require("./middleware/errorMiddleware");
 
 
 const app = express();
@@ -37,6 +38,9 @@ app.use("/api/auth", authRoutes);
 app.use("/api/records", recordRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/users", userRoutes);
+
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 
 module.exports = app;

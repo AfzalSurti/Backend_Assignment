@@ -2,18 +2,16 @@ const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/authController");
 const rateLimit = require("express-rate-limit");
+const validateRequest = require("../middleware/validateRequest");
+const {
+  registerValidation,
+  loginValidation,
+} = require("../validators/authValidators");
 
 router.post(
   "/register",
-  (req, res, next) => {
-    const { name, email, password } = req.body;
-
-    if (!name || !email || !password) {
-      return res.status(400).json({ message: "All fields required" });
-    }
-
-    next();
-  },
+  registerValidation,
+  validateRequest,
   authController.register
 );
 
@@ -24,6 +22,12 @@ const loginLimiter = rateLimit({
 });
 
 // Login route
-router.post("/login", loginLimiter, authController.login);
+router.post(
+  "/login",
+  loginLimiter,
+  loginValidation,
+  validateRequest,
+  authController.login
+);
 
 module.exports = router;
